@@ -15,7 +15,7 @@ export default class SignUp extends Component {
   }
 
   handleChange(event) {
-    this.setState({ value: event.target.value });
+    this.setState({ [event.target.name]: event.target.value });
   }
 
   handleSubmit(event) {
@@ -27,10 +27,10 @@ export default class SignUp extends Component {
     myHeaders.append("Authorization", "Basic U2FtOmRvZG8=");
 
     const urlencoded = new URLSearchParams();
-    urlencoded.append("firstname", "");
-    urlencoded.append("lastname", "");
-    urlencoded.append("email", "");
-    urlencoded.append("password", "");
+    urlencoded.append("firstname", this.state.firstname);
+    urlencoded.append("lastname", this.state.lastname);
+    urlencoded.append("email", this.state.email);
+    urlencoded.append("password", this.state.password);
 
     const requestOptions = {
       method: "POST",
@@ -69,6 +69,7 @@ export default class SignUp extends Component {
             type="text"
             className="form-control"
             placeholder="First name"
+            name="firstname"
             value={this.state.firstname}
             onChange={this.handleChange}
           />
@@ -80,6 +81,7 @@ export default class SignUp extends Component {
             type="text"
             className="form-control"
             placeholder="Last name"
+            name="lastname"
             value={this.state.lastname}
             onChange={this.handleChange}
           />
@@ -91,6 +93,7 @@ export default class SignUp extends Component {
             type="email"
             className="form-control"
             placeholder="Enter email"
+            name="email"
             value={this.state.email}
             onChange={this.handleChange}
           />
@@ -102,6 +105,7 @@ export default class SignUp extends Component {
             type="password"
             className="form-control"
             placeholder="Enter password"
+            name="password"
             value={this.state.password}
             onChange={this.handleChange}
           />

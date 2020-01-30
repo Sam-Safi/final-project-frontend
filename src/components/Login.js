@@ -1,9 +1,63 @@
 import React, { Component } from "react";
 
 export default class Login extends Component {
+  constructor() {
+    super();
+    this.state = {
+      email: "",
+      password: "",
+      errors: {}
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({ [event.target.name]: event.target.value });
+  }
+
+  handleSubmit(event) {
+    alert(
+      "valid user profile found, adding profile to session: " + this.state.value
+    );
+    event.preventDefault();
+
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+
+    const urlencoded = new URLSearchParams();
+    urlencoded.append("email", this.state.email);
+    urlencoded.append("password", this.state.password);
+
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: urlencoded,
+      redirect: "follow"
+    };
+
+    fetch("/user/login", requestOptions)
+      .then(response => response.json())
+      .then(result => {
+        console.log(result);
+        //redirect here
+      })
+      .catch(error => console.log("error", error));
+  }
+
+  onSubmit(e) {
+    e.preventDefault();
+
+    const user = {
+      email: this.state.email,
+      password: this.state.password
+    };
+
+    this.props.registerUser(user, this.props.history);
+  }
   render() {
     return (
-      <form>
+      <form onSubmit={this.handleSubmit}>
         <h3>Sign In</h3>
 
         <div className="form-group">
@@ -12,6 +66,9 @@ export default class Login extends Component {
             type="email"
             className="form-control"
             placeholder="Enter email"
+            name="email"
+            value={this.state.email}
+            onChange={this.handleChange}
           />
         </div>
 
@@ -21,6 +78,9 @@ export default class Login extends Component {
             type="password"
             className="form-control"
             placeholder="Enter password"
+            name="password"
+            value={this.state.password}
+            onChange={this.handleChange}
           />
         </div>
 
