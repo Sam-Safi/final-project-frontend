@@ -8,19 +8,46 @@ export default class SignUp extends Component {
       lastname: "",
       email: "",
       password: "",
-      errors: {}
+      firstnameErrorMsg: "",
+      lastnameErrorMsg: "",
+      emailErrorMsg: "",
+      passwordErrorMsg: "",
+      formValid: false
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
-    this.setState({ [event.target.name]: event.target.value });
+    console.log(event.target.value);
+    this.setState({
+      [event.target.name]: event.target.value,
+      [`${event.target.name}ErrorMsg`]: ""
+    });
+  }
+
+  checkValidation() {
+    if (!this.state.firstname) {
+      this.setState({ firstnameErrorMsg: "Please specify First name " });
+    }
+    if (!this.state.lastname) {
+      this.setState({ lastnameErrorMsg: "Please specify Last name " });
+    }
+    if (!this.state.email) {
+      this.setState({ emailErrorMsg: "Please specify Enter email " });
+    }
+    if (!this.state.password) {
+      this.setState({ passwordErrorMsg: "Please specify Enter password " });
+    }
   }
 
   handleSubmit(event) {
-    alert("User created: " + this.state.value);
     event.preventDefault();
+    this.checkValidation();
+
+    if (!this.state.formValid) {
+      return;
+    }
 
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
@@ -45,19 +72,6 @@ export default class SignUp extends Component {
       .catch(error => console.log("error", error));
   }
 
-  onSubmit(e) {
-    e.preventDefault();
-
-    const newUser = {
-      firstname: this.state.firstname,
-      lastname: this.state.lastname,
-      email: this.state.email,
-      password: this.state.password
-    };
-
-    this.props.registerUser(newUser, this.props.history);
-  }
-
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
@@ -67,48 +81,56 @@ export default class SignUp extends Component {
           <label>First name</label>
           <input
             type="text"
-            className="form-control"
+            className={`form-control ${this.state.firstnameErrorMsg &&
+              "is-invalid"}`}
             placeholder="First name"
             name="firstname"
             value={this.state.firstname}
             onChange={this.handleChange}
           />
+          <div className="invalid-feedback">{this.state.firstnameErrorMsg}</div>
         </div>
 
         <div className="form-group">
           <label>Last name</label>
           <input
             type="text"
-            className="form-control"
+            className={`form-control ${this.state.lastnameErrorMsg &&
+              "is-invalid"}`}
             placeholder="Last name"
             name="lastname"
             value={this.state.lastname}
             onChange={this.handleChange}
           />
+          <div className="invalid-feedback">{this.state.lastnameErrorMsg}</div>
         </div>
 
         <div className="form-group">
           <label>Email address</label>
           <input
             type="email"
-            className="form-control"
+            className={`form-control ${this.state.emailErrorMsg &&
+              "is-invalid"}`}
             placeholder="Enter email"
             name="email"
             value={this.state.email}
             onChange={this.handleChange}
           />
+          <div className="invalid-feedback">{this.state.emailErrorMsg}</div>
         </div>
 
         <div className="form-group">
           <label>Password</label>
           <input
             type="password"
-            className="form-control"
+            className={`form-control ${this.state.passwordErrorMsg &&
+              "is-invalid"}`}
             placeholder="Enter password"
             name="password"
             value={this.state.password}
             onChange={this.handleChange}
           />
+          <div className="invalid-feedback">{this.state.passwordErrorMsg}</div>
         </div>
 
         <button type="submit" className="btn btn-primary btn-block">

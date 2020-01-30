@@ -40,21 +40,13 @@ export default class Login extends Component {
       .then(response => response.json())
       .then(result => {
         console.log(result);
+        console.log(this.props);
         //redirect here
+        // this.props.history.push("/home/");
       })
       .catch(error => console.log("error", error));
   }
 
-  onSubmit(e) {
-    e.preventDefault();
-
-    const user = {
-      email: this.state.email,
-      password: this.state.password
-    };
-
-    this.props.registerUser(user, this.props.history);
-  }
   render() {
     return (
       <form onSubmit={this.handleSubmit}>

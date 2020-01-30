@@ -15,18 +15,32 @@ function App() {
             <Link className="navbar-brand" to={"/sign-in"}>
               S&S Book Store
             </Link>
+
             <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
               <ul className="navbar-nav ml-auto">
                 <li className="nav-item">
                   <Link className="nav-link" to={"/sign-in"}>
-                    Login
+                    Home
                   </Link>
                 </li>
-                <li className="nav-item">
-                  <Link className="nav-link" to={"/sign-up"}>
-                    Sign up
-                  </Link>
-                </li>
+
+                <div
+                  className="collapse navbar-collapse"
+                  id="navbarTogglerDemo02"
+                >
+                  <ul className="navbar-nav ml-auto">
+                    <li className="nav-item">
+                      <Link className="nav-link" to={"/sign-in"}>
+                        Login
+                      </Link>
+                    </li>
+                    <li className="nav-item">
+                      <Link className="nav-link" to={"/sign-up"}>
+                        Sign up
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
               </ul>
             </div>
           </div>
