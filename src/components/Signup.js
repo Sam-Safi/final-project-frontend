@@ -27,25 +27,39 @@ export default class SignUp extends Component {
   }
 
   checkValidation() {
+    let formValid = true; //({ formValid: true });
     if (!this.state.firstname) {
-      this.setState({ firstnameErrorMsg: "Please specify First name " });
+      this.setState({
+        firstnameErrorMsg: "Please specify First name "
+      });
+      formValid = false;
     }
     if (!this.state.lastname) {
-      this.setState({ lastnameErrorMsg: "Please specify Last name " });
+      this.setState({
+        lastnameErrorMsg: "Please specify Last name "
+      });
+      formValid = false;
     }
     if (!this.state.email) {
-      this.setState({ emailErrorMsg: "Please specify Enter email " });
+      this.setState({
+        emailErrorMsg: "Please specify Enter email "
+      });
+      formValid = false;
     }
     if (!this.state.password) {
-      this.setState({ passwordErrorMsg: "Please specify Enter password " });
+      this.setState({
+        passwordErrorMsg: "Please specify Enter password "
+      });
+      formValid = false;
     }
+
+    return formValid;
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    this.checkValidation();
 
-    if (!this.state.formValid) {
+    if (!this.checkValidation()) {
       return;
     }
 

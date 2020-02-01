@@ -5,8 +5,7 @@ export default class Login extends Component {
     super();
     this.state = {
       email: "",
-      password: "",
-      errors: {}
+      password: ""
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -42,7 +41,6 @@ export default class Login extends Component {
         console.log(result);
         console.log(this.props);
         //redirect here
-        // this.props.history.push("/home/");
       })
       .catch(error => console.log("error", error));
   }
