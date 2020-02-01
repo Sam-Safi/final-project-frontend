@@ -3,9 +3,9 @@ import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
-import Login from "./components/Login";
-import SignUp from "./components/Signup";
-// import BookList, { BookList } from "./components/BookList"
+import { Login } from "./components/Login";
+import { SignUp } from "./components/Signup";
+import { BookList } from "./components/BookList";
 
 function App() {
   return (
@@ -21,14 +21,26 @@ function App() {
               <ul className="navbar-nav ml-auto">
                 <li className="nav-item">
                   <Link className="nav-link" to={"/sign-in"}>
-                    Login
+                    BookList
                   </Link>
                 </li>
-                <li className="nav-item">
-                  <Link className="nav-link" to={"/sign-up"}>
-                    Sign up
-                  </Link>
-                </li>
+                <div
+                  className="collapse navbar-collapse"
+                  id="navbarTogglerDemo02"
+                >
+                  <ul className="navbar-nav ml-auto">
+                    <li className="nav-item">
+                      <Link className="nav-link" to={"/sign-in"}>
+                        Login
+                      </Link>
+                    </li>
+                    <li className="nav-item">
+                      <Link className="nav-link" to={"/sign-up"}>
+                        Sign up
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
               </ul>
             </div>
           </div>
@@ -40,7 +52,7 @@ function App() {
               <Route exact path="/" component={Login} />
               <Route path="/sign-in" component={Login} />
               <Route path="/sign-up" component={SignUp} />
-              {/* <Route path="/home" component={BookList} /> */}
+              <Route path="/booklist" component={BookList} />
             </Switch>
           </div>
         </div>

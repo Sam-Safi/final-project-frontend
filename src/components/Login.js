@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-export default class Login extends Component {
+export class Login extends Component {
   constructor() {
     super();
     this.state = {
@@ -16,9 +16,6 @@ export default class Login extends Component {
   }
 
   handleSubmit(event) {
-    alert(
-      "valid user profile found, adding profile to session: " + this.state.value
-    );
     event.preventDefault();
 
     const myHeaders = new Headers();
@@ -32,15 +29,22 @@ export default class Login extends Component {
       method: "POST",
       headers: myHeaders,
       body: urlencoded,
-      redirect: "follow"
+      redirect: "follow",
+      credentials: "same-origin"
     };
 
     fetch("/user/login", requestOptions)
-      .then(response => response.json())
-      .then(result => {
-        console.log(result);
-        console.log(this.props);
-        //redirect here
+      .then(response => {
+        if (+response.status === 200) {
+          this.props.history.push("/booklist");
+          console.log(response.json());
+        }
+
+        //todo if not 200 handle that, display message etc
+        alert(
+          "valid user profile found, adding profile to session: " +
+            this.state.value
+        );
       })
       .catch(error => console.log("error", error));
   }

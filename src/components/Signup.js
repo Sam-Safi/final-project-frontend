@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-export default class SignUp extends Component {
+export class SignUp extends Component {
   constructor() {
     super();
     this.state = {
@@ -27,7 +27,7 @@ export default class SignUp extends Component {
   }
 
   checkValidation() {
-    let formValid = true; //({ formValid: true });
+    let formValid = true;
     if (!this.state.firstname) {
       this.setState({
         firstnameErrorMsg: "Please specify First name "
@@ -81,8 +81,14 @@ export default class SignUp extends Component {
     };
 
     fetch("/public/newUser", requestOptions)
-      .then(response => response.text())
-      .then(result => console.log(result))
+      .then(response => {
+        if (+response.status >= 200 && +response.status < 300) {
+          this.props.history.push("/sign-in");
+          console.log(response.json());
+        }
+        // redirect is here
+      })
+
       .catch(error => console.log("error", error));
   }
 
