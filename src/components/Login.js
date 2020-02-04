@@ -34,10 +34,10 @@ export class Login extends Component {
     };
 
     fetch("/user/login", requestOptions)
-      .then(response => {
+      .then(async response => {
         if (+response.status === 200) {
-          this.props.history.push("/booklist");
-          console.log(response.json());
+          this.props.history.push("/admin");
+          console.log(await response.json());
         }
       })
       .catch(error => console.log("error", error));

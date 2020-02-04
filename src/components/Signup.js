@@ -77,7 +77,8 @@ export class SignUp extends Component {
       method: "POST",
       headers: myHeaders,
       body: urlencoded,
-      redirect: "follow"
+      redirect: "follow",
+      credentials: "same-origin"
     };
 
     fetch("/public/newUser", requestOptions)
