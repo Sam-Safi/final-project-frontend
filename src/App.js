@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import { Login } from "./components/Login";
 import { SignUp } from "./components/Signup";
-import { BookList } from "./components/BookList";
+import { Admin } from "./components/Admin";
 
 function App() {
   return (
@@ -21,7 +21,7 @@ function App() {
               <ul className="navbar-nav ml-auto">
                 <li className="nav-item">
                   <Link className="nav-link" to={"/sign-in"}>
-                    BookList
+                    Admin
                   </Link>
                 </li>
                 <div
@@ -52,7 +52,7 @@ function App() {
               <Route exact path="/" component={Login} />
               <Route path="/sign-in" component={Login} />
               <Route path="/sign-up" component={SignUp} />
-              <Route path="/booklist" component={BookList} />
+              <Route path="/admin" component={Admin} />
             </Switch>
           </div>
         </div>

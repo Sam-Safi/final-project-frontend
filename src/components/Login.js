@@ -39,12 +39,6 @@ export class Login extends Component {
           this.props.history.push("/booklist");
           console.log(response.json());
         }
-
-        //todo if not 200 handle that, display message etc
-        alert(
-          "valid user profile found, adding profile to session: " +
-            this.state.value
-        );
       })
       .catch(error => console.log("error", error));
   }

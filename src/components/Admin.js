@@ -10,7 +10,7 @@ import {
   Input
 } from "reactstrap";
 
-export class BookList extends Component {
+export class Admin extends Component {
   constructor(props) {
     super(props);
 
