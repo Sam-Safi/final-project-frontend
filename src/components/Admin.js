@@ -56,7 +56,7 @@ export class Admin extends Component {
     fetch("/private/book/new", requestOptions)
       .then(async response => {
         if (+response.status === 200) {
-          this.props.history.push("/book");
+          this.props.history.push("/booklist");
           console.log(await response.json());
         }
       })
@@ -65,57 +65,59 @@ export class Admin extends Component {
 
   render() {
     return (
-      <div>
-        <Button
-          color="primary"
-          style={{ marginBottom: "2rem" }}
-          onClick={this.toggle}
-        >
-          Add Book
-        </Button>
+      <div className="auth-inner">
+        <div>
+          <Button
+            color="primary"
+            style={{ marginBottom: "2rem" }}
+            onClick={this.toggle}
+          >
+            Add Book
+          </Button>
 
-        <Modal isOpen={this.state.modal} toggle={this.toggle}>
-          <ModalHeader toggle={this.toggle}>
-            Add book to your library
-          </ModalHeader>
-          <ModalBody>
-            <Form onSubmit={this.handleSubmit} className="form">
-              <FormGroup>
-                <Label for="title">Title:</Label>
-                <Input
-                  color="black"
-                  type="text"
-                  name="title"
-                  placeholder=""
-                  value={this.state.title}
-                  onChange={this.handleChange}
-                />
-                <Label for="author">Author:</Label>
-                <Input
-                  type="text"
-                  name="author"
-                  id="author"
-                  placeholder=""
-                  value={this.state.author}
-                  onChange={this.handleChange}
-                />
-                <Label for="description">Description:</Label>
-                <Input
-                  type="text"
-                  name="description"
-                  placeholder=""
-                  value={this.state.description}
-                  onChange={this.handleChange}
-                />
-                <Label for="image">Image:</Label>
-                <Input type="select" name="image"></Input>
-                <Button color="dark" style={{ marginTop: "2rem" }} block>
-                  Add Book
-                </Button>
-              </FormGroup>
-            </Form>
-          </ModalBody>
-        </Modal>
+          <Modal isOpen={this.state.modal} toggle={this.toggle}>
+            <ModalHeader toggle={this.toggle}>
+              Add book to your library
+            </ModalHeader>
+            <ModalBody>
+              <Form onSubmit={this.handleSubmit} className="form">
+                <FormGroup>
+                  <Label for="title">Title:</Label>
+                  <Input
+                    color="black"
+                    type="text"
+                    name="title"
+                    placeholder=""
+                    value={this.state.title}
+                    onChange={this.handleChange}
+                  />
+                  <Label for="author">Author:</Label>
+                  <Input
+                    type="text"
+                    name="author"
+                    id="author"
+                    placeholder=""
+                    value={this.state.author}
+                    onChange={this.handleChange}
+                  />
+                  <Label for="description">Description:</Label>
+                  <Input
+                    type="text"
+                    name="description"
+                    placeholder=""
+                    value={this.state.description}
+                    onChange={this.handleChange}
+                  />
+                  <Label for="image">Image:</Label>
+                  <Input type="select" name="image"></Input>
+                  <Button color="dark" style={{ marginTop: "2rem" }} block>
+                    Add Book
+                  </Button>
+                </FormGroup>
+              </Form>
+            </ModalBody>
+          </Modal>
+        </div>
       </div>
     );
   }

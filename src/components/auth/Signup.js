@@ -96,70 +96,75 @@ export class SignUp extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <h3>Sign Up</h3>
+        <div className="auth-inner">
+          <h3>Sign Up</h3>
 
-        <div className="form-group">
-          <label>First name</label>
-          <input
-            type="text"
-            className={`form-control ${this.state.firstnameErrorMsg &&
-              "is-invalid"}`}
-            placeholder="First name"
-            name="firstname"
-            value={this.state.firstname}
-            onChange={this.handleChange}
-          />
-          <div className="invalid-feedback">{this.state.firstnameErrorMsg}</div>
+          <div className="form-group">
+            <label>First name</label>
+            <input
+              type="text"
+              className={`form-control ${this.state.firstnameErrorMsg &&
+                "is-invalid"}`}
+              placeholder="First name"
+              name="firstname"
+              value={this.state.firstname}
+              onChange={this.handleChange}
+            />
+            <div className="invalid-feedback">
+              {this.state.firstnameErrorMsg}
+            </div>
+          </div>
+
+          <div className="form-group">
+            <label>Last name</label>
+            <input
+              type="text"
+              className={`form-control ${this.state.lastnameErrorMsg &&
+                "is-invalid"}`}
+              placeholder="Last name"
+              name="lastname"
+              value={this.state.lastname}
+              onChange={this.handleChange}
+            />
+            <div className="invalid-feedback">
+              {this.state.lastnameErrorMsg}
+            </div>
+          </div>
+
+          <div className="form-group">
+            <label>Email address</label>
+            <input
+              type="email"
+              className={`form-control ${this.state.emailErrorMsg &&
+                "is-invalid"}`}
+              placeholder="Enter email"
+              name="email"
+              value={this.state.email}
+              onChange={this.handleChange}
+            />
+            <div className="invalid-feedback">{this.state.emailErrorMsg}</div>
+          </div>
+
+          <div className="form-group">
+            <label>Password</label>
+            <input
+              type="password"
+              className={`form-control ${this.state.passwordErrorMsg &&
+                "is-invalid"}`}
+              placeholder="Enter password"
+              name="password"
+              value={this.state.password}
+              onChange={this.handleChange}
+            />
+            <div className="invalid-feedback">
+              {this.state.passwordErrorMsg}
+            </div>
+          </div>
+
+          <button type="submit" className="btn btn-primary btn-block">
+            Sign Up
+          </button>
         </div>
-
-        <div className="form-group">
-          <label>Last name</label>
-          <input
-            type="text"
-            className={`form-control ${this.state.lastnameErrorMsg &&
-              "is-invalid"}`}
-            placeholder="Last name"
-            name="lastname"
-            value={this.state.lastname}
-            onChange={this.handleChange}
-          />
-          <div className="invalid-feedback">{this.state.lastnameErrorMsg}</div>
-        </div>
-
-        <div className="form-group">
-          <label>Email address</label>
-          <input
-            type="email"
-            className={`form-control ${this.state.emailErrorMsg &&
-              "is-invalid"}`}
-            placeholder="Enter email"
-            name="email"
-            value={this.state.email}
-            onChange={this.handleChange}
-          />
-          <div className="invalid-feedback">{this.state.emailErrorMsg}</div>
-        </div>
-
-        <div className="form-group">
-          <label>Password</label>
-          <input
-            type="password"
-            className={`form-control ${this.state.passwordErrorMsg &&
-              "is-invalid"}`}
-            placeholder="Enter password"
-            name="password"
-            value={this.state.password}
-            onChange={this.handleChange}
-          />
-          <div className="invalid-feedback">{this.state.passwordErrorMsg}</div>
-        </div>
-
-        <button type="submit" className="btn btn-primary btn-block">
-          Sign Up
-        </button>
-        <p className="forgot-password text-right">
-          Already registered <a href="#">sign in?</a>
-        </p>
       </form>
     );
   }
