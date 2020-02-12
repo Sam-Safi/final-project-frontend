@@ -23,7 +23,8 @@ export class EditBook extends Component {
     });
   };
 
-  handleEdit = () => {
+  handleEdit = event => {
+    event.preventDefault();
     console.log("handle edit reached");
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
