@@ -61,7 +61,14 @@ export class BookList extends Component {
     }
 
     return this.state.books.map(book => {
-      return <Book key={book._id} book={book} onDelete={this.handleDelete} />;
+      return (
+        <Book
+          key={book._id}
+          book={book}
+          onDelete={this.handleDelete}
+          onClick={this.handleEdit}
+        />
+      );
     });
   }
   render() {

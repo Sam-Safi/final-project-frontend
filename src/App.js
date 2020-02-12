@@ -6,9 +6,11 @@ import { Login } from "./components/auth/Login";
 import { SignUp } from "./components/auth/Signup";
 import { Admin } from "./components/Admin";
 import { BookList } from "./components/BookList";
+import { EditBook } from "./components/EditBook";
 
 function App() {
   const [userLogin, setUserLogin] = useState(false);
+
   return (
     <Router>
       <div className="App">
@@ -69,13 +71,10 @@ function App() {
               )}
             ></Route>
             <Route path="/sign-up" component={SignUp} />
-            <Route path="/admin" component={Admin} />
+            {userLogin && <Route path="/admin" component={Admin} />}
 
-            {userLogin && (
-              <React.Fragment>
-                <Route path="/booklist" component={BookList} />
-              </React.Fragment>
-            )}
+            {userLogin && <Route path="/booklist" component={BookList} />}
+            <Route path="/editbook/:bookid" component={EditBook} />
           </Switch>
         </div>
       </div>

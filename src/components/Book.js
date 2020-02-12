@@ -30,9 +30,13 @@ const Book = props => {
           </Button>
           <Button
             color="primary"
-            onClick={() => props.handleEdit(props.book._id)}
+            href={"/editbook/" + props.book._id}
+            // onClick={
+            //   () => props.handleEdit(`/editbook/${props.book._id}`)
+            //   // this.props.history.push(`/editbook/${props.book._id}`)
+            // }
           >
-            Edit
+            Edit Book
           </Button>
         </CardBody>
       </Card>
