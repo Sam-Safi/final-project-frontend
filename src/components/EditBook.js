@@ -24,6 +24,7 @@ export class EditBook extends Component {
   };
 
   handleEdit = () => {
+    console.log("handle edit reached");
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
 
@@ -124,7 +125,12 @@ export class EditBook extends Component {
             />
             <Label for="image">Image:</Label>
             <Input type="select" name="image"></Input>
-            <Button color="dark" style={{ marginTop: "2rem" }} block>
+            <Button
+              type="submit"
+              color="dark"
+              style={{ marginTop: "2rem" }}
+              block
+            >
               Edit Book
             </Button>
           </FormGroup>
