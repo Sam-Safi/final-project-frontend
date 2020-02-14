@@ -49,25 +49,11 @@ export class EditBook extends Component {
       .then(result => {
         this.setState({ books: result });
         console.log(result);
-        this.fetchBookList();
+        this.props.history.push("/booklist");
       })
       .catch(error => console.log("error", error));
   };
 
-  fetchBookList() {
-    const requestOptions = {
-      method: "GET",
-      redirect: "follow"
-    };
-
-    fetch("/book/find", requestOptions)
-      .then(response => response.json())
-      .then(result => {
-        this.setState({ books: result });
-        console.log(result);
-      })
-      .catch(error => console.log("error", error));
-  }
   componentDidMount() {
     const requestOptions = {
       method: "GET",

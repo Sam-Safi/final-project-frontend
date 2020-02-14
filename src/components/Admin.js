@@ -22,6 +22,7 @@ export class Admin extends Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleFileChange = this.handleFileChange.bind(this);
   }
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value });
@@ -31,37 +32,62 @@ export class Admin extends Component {
       modal: !this.state.modal
     });
   };
-
-  handleSubmit(event) {
-    event.preventDefault();
-
-    const myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-
-    const raw = JSON.stringify({
-      title: this.state.title,
-      author: this.state.author,
-      description: this.state.description,
-      image: ""
+  handleFileChange = event => {
+    this.setState({
+      file: event.target.files[0]
     });
+  };
 
-    const requestOptions = {
+  handleSubmit = event => {
+    event.preventDefault();
+    const formData = new FormData(); //https://developer.mozilla.org/en-US/docs/Web/API/FormData/FormData
+    formData.append("file", this.state.file);
+    formData.append("title", this.state.title);
+    formData.append("author", this.state.author);
+    formData.append("description", this.state.description);
+    formData.append("image", this.state.image);
+
+    fetch("/private/book/new", {
       method: "POST",
-      headers: myHeaders,
-      body: raw,
+      body: formData,
       redirect: "follow",
       credentials: "same-origin"
-    };
-
-    fetch("/private/book/new", requestOptions)
-      .then(async response => {
-        if (+response.status === 200) {
+    })
+      .then(response => {
+        if (response.status === 201) {
+          console.log("new book created");
           this.props.history.push("/booklist");
-          console.log(await response.json());
         }
       })
-      .catch(error => console.log("error", error));
-  }
+      .catch(e => console.log(e));
+
+    // const myHeaders = new Headers();
+    // myHeaders.append("Content-Type", "application/json");
+
+    // const raw = JSON.stringify({
+    //   title: this.state.title,
+    //   author: this.state.author,
+    //   description: this.state.description,
+    //   image: ""
+    // });
+
+    // const requestOptions = {
+    //   method: "POST",
+    //   headers: myHeaders,
+    //   body: raw,
+    //   redirect: "follow",
+    //   credentials: "same-origin"
+    // };
+
+    // fetch("/private/book/new", requestOptions)
+    //   .then(async response => {
+    //     if (+response.status === 200) {
+    //       this.props.history.push("/booklist");
+    //       console.log(await response.json());
+    //     }
+    //   })
+    //   .catch(error => console.log("error", error));
+  };
 
   render() {
     return (
@@ -108,8 +134,15 @@ export class Admin extends Component {
                     value={this.state.description}
                     onChange={this.handleChange}
                   />
+
                   <Label for="image">Image:</Label>
-                  <Input type="select" name="image"></Input>
+                  <Input
+                    className="form-input"
+                    type="file"
+                    id="image"
+                    name="image"
+                    onChange={this.handleFileChange}
+                  ></Input>
                   <Button color="dark" style={{ marginTop: "2rem" }} block>
                     Add Book
                   </Button>

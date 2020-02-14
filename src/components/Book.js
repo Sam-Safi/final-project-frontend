@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import {
   Card,
@@ -12,13 +13,14 @@ import {
 } from "reactstrap";
 
 const Book = props => {
+  console.log("Book props", props);
   return (
     <Col xs="3" sm="3" md="4" lg="4" xl="4">
       <Card>
         <CardImg
           top
           width="100%"
-          src="/assets/318x180.svg"
+          src={`http://localhost:4000/uploads/${props.book.image}`}
           alt="Card image cap"
         />
         <CardBody>
@@ -28,16 +30,9 @@ const Book = props => {
           <Button color="danger" onClick={() => props.onDelete(props.book._id)}>
             Delete
           </Button>
-          <Button
-            color="primary"
-            href={"/editbook/" + props.book._id}
-            // onClick={
-            //   () => props.handleEdit(`/editbook/${props.book._id}`)
-            //   // this.props.history.push(`/editbook/${props.book._id}`)
-            // }
-          >
-            Edit Book
-          </Button>
+          <Link to={`/editbook/${props.book._id}`}>
+            <Button color="primary">Edit Book</Button>
+          </Link>
         </CardBody>
       </Card>
     </Col>
