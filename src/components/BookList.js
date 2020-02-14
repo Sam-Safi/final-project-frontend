@@ -73,11 +73,9 @@ export class BookList extends Component {
   }
   render() {
     return (
-      <div className="auth-wrapper">
-        <Container>
-          <Row>{this.renderBooks()}</Row>
-        </Container>
-      </div>
+      <Container>
+        <Row>{this.renderBooks()}</Row>
+      </Container>
     );
   }
 }

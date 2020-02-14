@@ -71,12 +71,15 @@ function App() {
               )}
             ></Route>
             <Route path="/sign-up" component={SignUp} />
-            {userLogin && <Route path="/admin" component={Admin} />}
 
-            {userLogin && <Route path="/booklist" component={BookList} />}
-            <Route path="/editbook/:bookid" component={EditBook} />
+            {userLogin && <Route path="/admin" component={Admin} />}
           </Switch>
         </div>
+
+        <Switch>
+          {userLogin && <Route path="/booklist" component={BookList} />}
+          <Route path="/editbook/:bookid" component={EditBook} />
+        </Switch>
       </div>
     </Router>
   );

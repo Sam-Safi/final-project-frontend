@@ -20,7 +20,7 @@ const Book = props => {
         <CardImg
           top
           width="100%"
-          src={`http://localhost:4000/uploads/${props.book.image}`}
+          src={`http://localhost:4000/${props.book.image}`}
           alt="Card image cap"
         />
         <CardBody>
