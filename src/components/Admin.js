@@ -60,33 +60,6 @@ export class Admin extends Component {
         }
       })
       .catch(e => console.log(e));
-
-    // const myHeaders = new Headers();
-    // myHeaders.append("Content-Type", "application/json");
-
-    // const raw = JSON.stringify({
-    //   title: this.state.title,
-    //   author: this.state.author,
-    //   description: this.state.description,
-    //   image: ""
-    // });
-
-    // const requestOptions = {
-    //   method: "POST",
-    //   headers: myHeaders,
-    //   body: raw,
-    //   redirect: "follow",
-    //   credentials: "same-origin"
-    // };
-
-    // fetch("/private/book/new", requestOptions)
-    //   .then(async response => {
-    //     if (+response.status === 200) {
-    //       this.props.history.push("/booklist");
-    //       console.log(await response.json());
-    //     }
-    //   })
-    //   .catch(error => console.log("error", error));
   };
 
   render() {
